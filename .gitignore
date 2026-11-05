@@ -1,0 +1,38 @@
+# ---------- 前端 / Node ----------
+node_modules/
+frontend/node_modules/
+dist/
+frontend/dist/
+dist-ssr/
+.vite/
+*.local
+
+# ---------- Rust / Tauri 构建产物 ----------
+src-tauri/target/
+src-tauri/gen/schemas/
+**/*.rs.bk
+*.pdb
+
+# ---------- 本地工具（GStreamer 安装包等，不入库） ----------
+.tools/
+*.msi
+*.exe
+
+# ---------- 编辑器 / 系统 ----------
+.vscode/*
+!.vscode/extensions.json
+.idea/
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# ---------- 日志 / 临时 ----------
+*.log
+npm-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+.cache/
+tmp/
+
+# ---------- 内部工作区状态 ----------
+.workbuddy/
