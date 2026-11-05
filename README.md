@@ -1,5 +1,8 @@
 # RustOnAir (基于 Rust + Tauri v2 + GStreamer 的高性能多机位融媒体导播台)
 
+[![Release](https://img.shields.io/github/v/release/sdrt612/RustOnAir?label=release)](https://github.com/sdrt612/RustOnAir/releases)
+[![Platform](https://img.shields.io/badge/platform-Windows%2010%2F11-blue)](https://github.com/sdrt612/RustOnAir)
+
 类似于 **vMix / OBS / 芯象 (Cgangs)** 的现代化多机位导播推流系统。
 
 ---
@@ -51,16 +54,33 @@
 
 ---
 
+## 环境依赖
+
+| 组件 | 版本 | 说明 |
+| --- | --- | --- |
+| Rust | 1.85+ (stable, MSVC toolchain) | 编译原生媒体引擎 |
+| Node.js | 20+ | 构建 React 前端 |
+| GStreamer | 1.28 (msvc_x86_64, Complete 安装) | 采集、混流与推流底座，必须装 **Complete** 版本 |
+| WebView2 | 系统自带 | Tauri v2 运行时 |
+
+GStreamer 建议安装到默认路径 `%LOCALAPPDATA%\Programs\gstreamer\1.0\msvc_x86_64\`，`run_demo.bat` 与下述环境变量均按此路径配置。
+
+---
+
 ## 启动方式
 
 ### 方式一：直接运行已编译的二进制 Demo
-双击项目根目录下的 **`run_demo.bat`** 即可瞬间启动导播台。
+双击项目根目录下的 **`run_demo.bat`** 即可瞬间启动导播台（需已存在 `src-tauri/target/debug/app.exe`）。
 
 ### 方式二：开发模式启动 (带热重载)
-在 PowerShell 中运行：
 ```powershell
+git clone https://github.com/sdrt612/RustOnAir.git
+cd RustOnAir
+
 $env:Path += ";$env:LOCALAPPDATA\Programs\gstreamer\1.0\msvc_x86_64\bin;$env:USERPROFILE\.cargo\bin"
-cd e:\rustonair
+$env:PKG_CONFIG_PATH = "$env:LOCALAPPDATA\Programs\gstreamer\1.0\msvc_x86_64\lib\pkgconfig"
+
+npm --prefix frontend install
 npx tauri dev
 ```
 
